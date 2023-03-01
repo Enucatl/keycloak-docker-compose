@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+
+  postgresql:
+    image: postgres:15.2-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${KEYCLOAK_DATABASE_NAME}
+      POSTGRES_USER: ${KEYCLOAK_DATABASE_USER}
+      POSTGRES_PASSWORD: ${KEYCLOAK_DATABASE_PASSWORD}
+    networks:
+      - traefik_proxy
+
+  keycloak:
+    image: bitnami/keycloak:latest
+    depends_on:
+      - postgresql
+    environment:
+      - KEYCLOAK_ADMIN_USER
+      - KEYCLOAK_ADMIN_PASSWORD
+      - KEYCLOAK_MANAGEMENT_USER
+      - KEYCLOAK_MANAGEMENT_PASSWORD
+      - KEYCLOAK_DATABASE_NAME
+      - KEYCLOAK_DATABASE_USER
+      - KEYCLOAK_DATABASE_PASSWORD
+    ports:
+      - 8080:8080
+    # expose:
+    #   - 8080
+    restart: unless-stopped
+    networks:
+      - traefik_proxy
+
+
+networks:
+  traefik_proxy:
+    external: true
