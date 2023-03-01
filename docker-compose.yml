@@ -17,6 +17,7 @@ services:
     depends_on:
       - postgresql
     environment:
+      - KEYCLOAK_CREATE_ADMIN_USER
       - KEYCLOAK_ADMIN_USER
       - KEYCLOAK_ADMIN_PASSWORD
       - KEYCLOAK_MANAGEMENT_USER
