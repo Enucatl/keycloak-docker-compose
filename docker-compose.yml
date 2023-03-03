@@ -4,7 +4,7 @@ services:
 
   postgresql:
     image: postgres:15.2-alpine
-    restart: no
+    restart: unless-stopped
     environment:
       POSTGRES_DB: ${KEYCLOAK_DATABASE_NAME}
       POSTGRES_USER: ${KEYCLOAK_DATABASE_USER}
@@ -29,7 +29,7 @@ services:
       - 8080:8080
     # expose:
     #   - 8080
-    restart: no
+    restart: unless-stopped
     networks:
       - traefik_proxy
 
