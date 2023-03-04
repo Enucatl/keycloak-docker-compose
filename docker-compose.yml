@@ -32,12 +32,12 @@ services:
       - 8080
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.qbittorrent.rule=Host(`keycloak.nuc10i7fnh.home.arpa`)"
-      - "traefik.http.routers.qbittorrent.entrypoints=https"
-      - "traefik.http.routers.qbittorrent.tls=true"
-      - "traefik.http.routers.qbittorrent.middlewares=secured@file"
-      - "traefik.http.routers.qbittorrent.service=keycloak"
-      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
+      - "traefik.http.routers.keycloak.rule=Host(`keycloak.nuc10i7fnh.home.arpa`)"
+      - "traefik.http.routers.keycloak.entrypoints=https"
+      - "traefik.http.routers.keycloak.tls=true"
+      - "traefik.http.routers.keycloak.middlewares=secured@file"
+      - "traefik.http.routers.keycloak.service=keycloak"
+      - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
 
 
 networks:
