@@ -25,13 +25,19 @@ services:
       - KEYCLOAK_DATABASE_NAME
       - KEYCLOAK_DATABASE_USER
       - KEYCLOAK_DATABASE_PASSWORD
-    ports:
-      - 8080:8080
-    # expose:
-    #   - 8080
     restart: unless-stopped
     networks:
       - traefik_proxy
+    expose:
+      - 8080
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.qbittorrent.rule=Host(`keycloak.nuc10i7fnh.home.arpa`)"
+      - "traefik.http.routers.qbittorrent.entrypoints=https"
+      - "traefik.http.routers.qbittorrent.tls=true"
+      - "traefik.http.routers.qbittorrent.middlewares=secured@file"
+      - "traefik.http.routers.qbittorrent.service=keycloak"
+      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
 
 
 networks:
