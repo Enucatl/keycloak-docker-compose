@@ -15,8 +15,8 @@ services:
   keycloak:
     image: bitnami/keycloak:latest
     volumes:
-      - /home/docker/keycloak-docker-compose/data/keycloak.truststore.jks:/opt/bitnami/keycloak/certs/keycloak.truststore.jks:ro
-      - /home/docker/keycloak-docker-compose/data/krb5-keycloak.keytab:/etc/krb5-keycloak.keytab:ro
+      - /home/user/docker/keycloak-docker-compose/data/keycloak.truststore.jks:/opt/bitnami/keycloak/certs/keycloak.truststore.jks:ro
+      - /home/user/docker/keycloak-docker-compose/data/krb5-keycloak.keytab:/etc/krb5-keycloak.keytab:ro
     depends_on:
       - postgresql
     environment:
