@@ -18,6 +18,7 @@ services:
       - /home/user/docker/keycloak-docker-compose/data/keycloak.truststore.jks:/opt/bitnami/keycloak/certs-spi/keycloak.truststore.jks:ro
       - /home/user/docker/keycloak-docker-compose/data/keycloak.truststore.jks:/opt/bitnami/keycloak/certs/keycloak.truststore.jks:ro
       - /home/user/docker/keycloak-docker-compose/data/krb5-keycloak.keytab:/etc/krb5-keycloak.keytab:ro
+      - /home/user/src/puppet-control-repo/modules/ca/files/root_2022_ca.crt:/usr/lib/ssl/certs/root_2022_ca.pem:ro
     depends_on:
       - postgresql
     environment:
