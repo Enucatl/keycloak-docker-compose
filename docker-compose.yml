@@ -14,6 +14,9 @@ services:
 
   keycloak:
     image: bitnami/keycloak:latest
+    volumes:
+      - /home/docker/keycloak-docker-compose/data/keycloak.truststore.jks:/opt/bitnami/keycloak/certs/keycloak.truststore.jks:ro
+      - /home/docker/keycloak-docker-compose/data/krb5-keycloak.keytab:/etc/krb5-keycloak.keytab:ro
     depends_on:
       - postgresql
     environment:
@@ -25,6 +28,8 @@ services:
       - KEYCLOAK_DATABASE_NAME
       - KEYCLOAK_DATABASE_USER
       - KEYCLOAK_DATABASE_PASSWORD
+      - KEYCLOAK_TLS_TRUSTSTORE_FILE
+      - KEYCLOAK_TLS_TRUSTSTORE_PASSWORD
     restart: unless-stopped
     networks:
       - traefik_proxy
